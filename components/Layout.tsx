@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
 import Navbar from "../components/Navbar"
 
@@ -19,11 +18,9 @@ const Layout = ({ children, title = 'ReleaseHub - A GitHub Release Tracker' }: P
     <header>
       <Navbar/>
     </header>
-    {children}
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2">
+        {children}
+    </div>
   </div>
 )
 
