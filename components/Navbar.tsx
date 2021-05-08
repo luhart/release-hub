@@ -22,9 +22,12 @@ export default function Navbar() {
               </a>
             </Link>
           </div>
-          <button className="my-4 mx-2 px-2 font-bold bg-red-400 border-black border-4 rounded-lg hover:bg-red-300 max-h-12 min-w-24">
+          <a
+            href="https://github.com/luhart/release-hub"
+            className="my-auto py-2 px-2 border-2 border-indigo-400 text-md font-bold rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
             Source
-          </button>
+          </a>
         </div>
       </nav>
     </>
