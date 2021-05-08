@@ -24,7 +24,7 @@ export default function Navbar() {
           </div>
           <a
             href="https://github.com/luhart/release-hub"
-            className="my-auto py-2 px-2 border-2 border-indigo-400 text-md font-bold rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="my-auto mx-2 py-2 px-2 border-2 border-indigo-400 text-md font-bold rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Source
           </a>
