@@ -15,7 +15,7 @@ export default function Navbar() {
                   <div className="text-white font-extrabold text-2xl">
                     ReleaseHub
                   </div>
-                  <div className="font-regular text-gray-400 text-xs border-l-4 pl-2 border-gray-400">
+                  <div className="font-regular text-gray-300 text-xs border-l-4 pl-2 border-gray-500">
                     Stay current with your <br/> favorite GitHub repos
                   </div>
                 </div>

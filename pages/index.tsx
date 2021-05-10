@@ -1,9 +1,9 @@
-import Link from 'next/link'
 import Layout from '../components/Layout'
+import AddRepoPanel from '../components/AddRepoPanel'
 
 const IndexPage = () => (
   <Layout>
-    <h1>Hello Next.js 👋</h1>
+    <AddRepoPanel />
   </Layout>
 )
 
