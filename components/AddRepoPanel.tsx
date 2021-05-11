@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form"
 
 type FormValues = {
-  newRepo: string,
+  newRepoURL: string,
 };
 
 export default function AddRepoPanel () {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+
   const onSubmit = (data: FormValues) => {
-    console.log(data);
+    const parsedData = data.newRepoURL.split("/")
+    const [ org, repo ] = parsedData.slice(1).splice(-2)
   }
 
   return (
@@ -19,24 +21,24 @@ export default function AddRepoPanel () {
         </div>
         <form className="mt-5 sm:flex sm:items-center" onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full sm:max-w-xs">
-            <label htmlFor="newRepo" className="sr-only">
-              New repo
+            <label htmlFor="newRepoURL" className="sr-only">
+              New repo URL
             </label>
-            {!errors.newRepo ? (
+            {!errors.newRepoURL ? (
              <input
               type="text"
-              id="newRepo"
+              id="newRepoURL"
               className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
               placeholder="ex. https://github.com/airbnb/visx"
-              {...register("newRepo", { required: true })}
+              {...register("newRepoURL", { required: true })}
             />               
             ) : (
             <input
               type="text"
-              id="newRepo"
+              id="newRepoURL"
               className="shadow-sm border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 block w-full sm:text-sm rounded-md"
               placeholder="ex. https://github.com/airbnb/visx"
-              {...register("newRepo", { required: true })}
+              {...register("newRepoURL", { required: true })}
             />
             )}
 
