@@ -8,3 +8,8 @@ export type User = {
   id: number
   name: string
 }
+
+export type GitHubURL = {
+  owner: string,
+  repo: string,
+}

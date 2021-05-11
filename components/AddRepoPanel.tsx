@@ -7,9 +7,27 @@ type FormValues = {
 export default function AddRepoPanel () {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
-  const onSubmit = (data: FormValues) => {
-    const parsedData = data.newRepoURL.split("/")
-    const [ org, repo ] = parsedData.slice(1).splice(-2)
+  const onSubmit = async (data: FormValues) => {
+    const parsedData = data.newRepoURL.split("/").filter(item => item)
+    const [ owner, repo ] = parsedData.splice(-2)
+    const resp = await fetch("/api/repos/add", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        owner: owner,
+        repo: repo,
+      })
+    })
+    const repoData = await resp.json()
+    const repos = localStorage.getItem("repos")
+    if (repos) {
+      localStorage.setItem("repos", `${repos},${owner}/${repo}`)
+    } else {
+      localStorage.setItem("repos", `${owner}/${repo}`)
+    }
+    localStorage.setItem(`${owner}/${repo}`, JSON.stringify(repoData))
   }
 
   return (
