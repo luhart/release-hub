@@ -50,4 +50,4 @@ function useRepos() {
   return context
 }
 
-export { RepoContextProvider }
+export { RepoContextProvider, useRepos }
