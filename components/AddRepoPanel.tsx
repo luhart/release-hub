@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form"
+import { useRepos } from "../utils/repo-context"
 
 type FormValues = {
   newRepoURL: string,
@@ -6,6 +7,7 @@ type FormValues = {
 
 export default function AddRepoPanel () {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+  const { dispatch } = useRepos()
 
   const onSubmit = async (data: FormValues) => {
     const parsedData = data.newRepoURL.split("/").filter(item => item)
@@ -21,13 +23,7 @@ export default function AddRepoPanel () {
       })
     })
     const repoData = await resp.json()
-    const repos = localStorage.getItem("repos")
-    if (repos) {
-      localStorage.setItem("repos", `${repos},${owner}/${repo}`)
-    } else {
-      localStorage.setItem("repos", `${owner}/${repo}`)
-    }
-    localStorage.setItem(`${owner}/${repo}`, JSON.stringify(repoData))
+    dispatch({type: 'add', repo: repoData})
   }
 
   return (
