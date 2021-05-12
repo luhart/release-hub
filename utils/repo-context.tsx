@@ -27,12 +27,20 @@ function repoReducer(state: RepoState, action: Action) {
 }
 
 function RepoContextProvider ({children}: RepoProviderProps) {
+  const localStorageDefined = (typeof window !== "undefined")
   const [ state, dispatch ] = useReducer(repoReducer, [], () => {
-    const localRepoData = localStorage.getItem("repos")
-    return localRepoData ? JSON.parse(localRepoData) : []
+    if (localStorageDefined) {
+      const localRepoData = localStorage.getItem("repos")
+      return localRepoData ? JSON.parse(localRepoData) : []
+    }
+    else {
+      return []
+    }
   })
   useEffect(() => {
-    localStorage.setItem("repos", JSON.stringify(state))
+    if (localStorageDefined) {
+      localStorage.setItem("repos", JSON.stringify(state))
+    }
   }, [state])
   const value = {state, dispatch}
   return (
