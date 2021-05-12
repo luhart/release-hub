@@ -4,9 +4,13 @@
 //
 // import { User } from 'path/to/interfaces';
 
-export type User = {
-  id: number
-  name: string
+export type Repo = {
+  owner: string,
+  repoName: string,
+  url: string,
+  body: string,
+  tagName: string,
+  releaseDate: string,
 }
 
 export type GitHubURL = {
