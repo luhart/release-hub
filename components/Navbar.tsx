@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Navbar() {
   return (
     <>
-      <nav className="w-full font-mono text-left border-b-4 bg-gradient-to-l from-green-400 bg-indigo-700 border-black shadow">
+      <nav className="w-full font-mono text-left border-b-4 bg-gradient-to-l from-green-100 bg-blue-200 border-black shadow">
         <div className="flex flex-row m-auto justify-between max-w-7xl">
           <div className="px-2 py-2"> <Link href="/">
               <a>
@@ -12,10 +12,10 @@ export default function Navbar() {
                   src="/octocat.png"
                 />
                 <div className="inline-block">
-                  <div className="text-white font-extrabold text-2xl">
+                  <div className="text-black font-extrabold text-2xl">
                     ReleaseHub
                   </div>
-                  <div className="font-regular text-gray-300 text-xs border-l-4 pl-2 border-gray-500">
+                  <div className="font-regular text-gray-600 text-xs border-l-4 pl-2 border-gray-100">
                     Stay current with your <br/> favorite GitHub repos
                   </div>
                 </div>
