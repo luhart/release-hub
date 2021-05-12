@@ -1,12 +1,17 @@
+import { RepoContextProvider, useRepos } from '../utils/repo-context'
 import Layout from '../components/Layout'
 import AddRepoPanel from '../components/AddRepoPanel'
 import RepoList from '../components/RepoList'
 
-const IndexPage = () => (
-  <Layout>
-    <AddRepoPanel />
-    <RepoList />
-  </Layout>
-)
+export default function IndexPage () {
+  const { state } = useRepos()
 
-export default IndexPage
+  return (
+    <RepoContextProvider>
+      <Layout>
+        <AddRepoPanel />
+        <RepoList repos={state}/>
+      </Layout>
+    </RepoContextProvider>
+  )
+}
