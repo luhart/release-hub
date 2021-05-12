@@ -8,7 +8,7 @@ type Props = {
 const RepoListHeader = () => (
   <div className="flex justify-between items-center mt-8 ">
     <div className="ml-3">
-      <p className="text-xl font-semibold">Your tracked repos</p>
+      <p className="text-xl font-semibold pb-1">Your tracked repos</p>
       <p className="text-sm text-gray-500">Click an item to toggle more details!</p>
       <p className="text-sm text-gray-500">New releases are marked with a 
         <span className="mx-1 inline-block h-2 w-2 rounded-full  ring-white bg-green-400" />
@@ -21,7 +21,6 @@ const RepoListHeader = () => (
         alt=""
       />
     </div>
-    
   </div>
 )
 
