@@ -9,7 +9,7 @@ export default function Navbar() {
               <a>
                 <img
                   className="w-14 h-14 inline align-top mr-2 mt-1"
-                  src="/logo.svg"
+                  src="/octocat.png"
                 />
                 <div className="inline-block">
                   <div className="text-white font-extrabold text-2xl">
