@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import fetchRepoData from "../../../../utils/fetchRepoData"
+import fetchRepoData from "../../../../utils/fetch-repo"
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { owner, repo } = req.body

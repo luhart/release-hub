@@ -9,6 +9,8 @@ export default async function fetchRepoData(url: GitHubURL) {
     repo: url.repo,
   })
   const data = {
+    owner: url.owner,
+    repoName: url.repo,
     url: response.data[0].url,
     body: response.data[0].body,
     tagName: response.data[0].tag_name,
