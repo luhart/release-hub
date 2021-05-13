@@ -26,22 +26,16 @@ function repoReducer(state: RepoState, action: Action) {
   }
 }
 
-function RepoContextProvider ({children}: RepoProviderProps) {
-  const localStorageDefined = (typeof window !== "undefined")
+export default function RepoContextProvider ({children}: RepoProviderProps) {
   const [ state, dispatch ] = useReducer(repoReducer, [], () => {
-    if (localStorageDefined) {
-      const localRepoData = localStorage.getItem("repos")
-      return localRepoData ? JSON.parse(localRepoData) : []
-    }
-    else {
-      return []
-    }
+    const localRepoData = localStorage.getItem("repos")
+    return localRepoData ? JSON.parse(localRepoData) : []
   })
+
   useEffect(() => {
-    if (localStorageDefined) {
       localStorage.setItem("repos", JSON.stringify(state))
-    }
   }, [state])
+
   const value = {state, dispatch}
   return (
     <RepoContext.Provider value={value}>
