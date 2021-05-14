@@ -2,6 +2,7 @@ import { Fragment, Dispatch, SetStateAction } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import moment from 'moment'
+import ReactMarkdown from 'react-markdown'
 import { Repo } from '../interfaces'
 
 type Props = {
@@ -15,15 +16,20 @@ const Body = (repo: Repo) => (
   <div className="absolute inset-0 px-4 sm:px-6">
     <div className="flex flex-row justify-between">
       <div className="text-md">
-        <span className="mr-4 text-sm text-bold text-gray-500">release</span>
+        <span className="mr-4 text-sm font-bold text-gray-500">release</span>
         <span>{repo.tagName}</span>
       </div>
       <div>
-        <span className="mr-4 text-sm text-bold text-gray-500">release date</span>
+        <span className="mr-4 text-sm font-bold text-gray-500">release date</span>
         <span>
           { moment(repo.releaseDate).format('YYYY-MM-DD') }
         </span>
       </div>
+    </div>
+    <div>
+      <div className="mt-4 mb-2 font-bold text-gray-800">Description</div>
+      {repo.body}<hr/>
+      <ReactMarkdown className="prose">{repo.body}</ReactMarkdown>
     </div>
   </div>
 )
