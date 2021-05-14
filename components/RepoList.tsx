@@ -29,9 +29,17 @@ const RepoList = ({ repos }: Props) => (
     <RepoListHeader />
     <ul className="space-y-3">
       {repos.map((repo) => (
-        <li key={repo.tagName} className="bg-white shadow overflow-hidden rounded-md px-6 py-4">
-          {repo.repoName} - {repo.tagName}
-          ... other details available onClick 
+        <li key={repo.tagName} className="bg-white shadow overflow-hidden rounded-md px-6 py-4 cursor-pointer" onClick={() => console.log("hi")}>
+          <div className="flex flex-row justify-between">
+            <div>
+              <span className="font-medium text-gray-500">{repo.owner}</span> /  {" "}
+              <span className="font-bold">{repo.repoName}</span>
+            </div>
+            <div>
+              <span className="text-xs uppercase font-semibold text-gray-400 mr-2">release </span>
+              <span className="font-medium p-1 rounded-md bg-blue-100">{repo.tagName}</span>
+            </div>
+          </div>
         </li>
       ))}
     </ul>
