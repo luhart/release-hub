@@ -13,8 +13,8 @@ type Props = {
 }
 
 const Body = (repo: Repo) => (
-  <div className="absolute inset-0 px-4 sm:px-6">
-    <div className="flex flex-row justify-between">
+  <div className="absolute inset-0 px-4 sm:px-6 divide-dashed divide-y-4">
+    <div className="flex flex-row justify-between my-4">
       <div className="text-md">
         <span className="mr-4 text-sm font-bold text-gray-500">release</span>
         <span>{repo.tagName}</span>
@@ -26,7 +26,7 @@ const Body = (repo: Repo) => (
         </span>
       </div>
     </div>
-    <div className="mt-8">
+    <div className="py-8">
       <ReactMarkdown className="prose" remarkPlugins={[gfm]} >{repo.body}</ReactMarkdown>
     </div>
   </div>
@@ -36,7 +36,7 @@ const Body = (repo: Repo) => (
 function RepoSlideOver ({open, setOpen, repo}: Props) {
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" static className="fixed inset-0 overflow-hidden" open={open} onClose={setOpen}>
+      <Dialog as="div" static className="fixed inset-0 overflow-hidden z-20" open={open} onClose={setOpen}>
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0" />
 
@@ -55,18 +55,11 @@ function RepoSlideOver ({open, setOpen, repo}: Props) {
                   <div className="px-4 sm:px-6">
                     <div className="flex items-start justify-between">
                       <Dialog.Title className="text-lg text-gray-900">
-                          {/* There's no good way to make a border gradient in tailwind :( */}
-                          <div className="inline-block">
-                            <div className="bg-gradient-to-r from-blue-200 to-green-200 h-2"/>
-                            <div className="bg-blue-200 h-16 w-2 mr-2 inline-block"/>
-                            <div className="inline-block align-top ">
-                              <span className="text-gray-500 font-medium">{repo?.owner}</span>
-                              <img className="relative inline-block w-16 h-16 z-10" src="/surftocat.png"/>
-                              <span className="font-bold">{repo?.repoName}</span>
-                            </div>
-                            <div className="bg-green-200 h-16 w-2 ml-2 inline-block"/>
-                            <div className="relative bg-gradient-to-r from-blue-200 to-green-200 h-2 -mt-2 z-10"/>
-                          </div>
+                        <div className="inline-block">
+                          <span className="font-bold">{repo?.repoName}</span>
+                          <img className="relative inline-block w-16 h-16 z-10" src="/surftocat.png"/>
+                          <span className="text-gray-500 font-medium">by {repo?.owner}</span>
+                        </div>
                       </Dialog.Title>
                       <div className="ml-3 h-7 flex items-center">
                         <button

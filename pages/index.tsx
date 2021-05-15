@@ -7,9 +7,9 @@ export default function IndexPage () {
   const { state } = useRepos()
 
   return (
-      <Layout>
-        <AddRepoPanel />
-        <RepoList repos={state}/>
-      </Layout>
+    <Layout>
+      <AddRepoPanel />
+      <RepoList repos={state}/>
+    </Layout>
   )
 }
