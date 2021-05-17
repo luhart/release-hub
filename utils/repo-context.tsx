@@ -17,7 +17,12 @@ function repoReducer(state: RepoState, action: Action) {
     case "add": {
       return [ ...state, action.repo ]
     }
+    case "add_or_update": {
+      const newState = state.map(repo => (repo.owner + repo.repoName === action.repo.owner + action.repo.repoName && action.repo) || repo)
+      return [ ...newState ]
+    }
     case "delete": {
+      // TODO: filter for and remove action.repo from localStorage
       return state.filter(repo => repo.owner + repo.repoName !== action.repo.owner + action.repo.repoName)
     }
     default: {
