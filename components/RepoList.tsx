@@ -7,32 +7,55 @@ type Props = {
   repos: Repo[]
 }
 
-const RepoListHeader = () => (
-  <div className="flex justify-between items-center mt-8 ">
-    <div>
-      <p className="text-xl text-gray-900 font-semibold pb-1">Your tracked repos</p>
-      <p className="text-sm text-gray-500">Click an item to toggle more details!</p>
-      <p className="text-sm text-gray-500 pt-1">Unread releases have a {" "}
-        <span className="border-2 border-green-400 rounded-md p-1">green border</span>
-      </p>
+const RepoListHeader = () => {
+
+  const [refreshing, setRefreshing] = useState(false)
+  const handleOnClick = () => {
+    setRefreshing(true)
+  }
+  return (
+    <div className="flex justify-between items-center ">
+      <div>
+        <p className="text-xl text-gray-900 font-semibold pb-1">Tracked repos</p>
+        <p className="text-sm text-gray-500 pt-0.5">
+          Check for new releases by clicking the <span className="inline-block">octocats &#8594;</span>
+        </p>
+        <p className="text-sm text-gray-500  pt-0.5">Unread releases are marked with a {" "}
+          <span className="border-2 border-green-400 rounded-md inline-block">green border</span>
+        </p>
+        
+      </div>
+        {/* TODO: 
+              - click the octocats to check for new releases 
+              - onHover show overlay a refresh icon
+              - onClick do a tailwind animation
+        */}
+        {refreshing ? (
+          <img 
+            className="border-2 bg-white shadow inline-block h-24 w-24 rounded-full animate-pulse" 
+            src="/repocats.png"
+            alt=""
+          />
+        ) : (
+          <a onClick={() => handleOnClick()}>
+            <img 
+              className="border-2 bg-white shadow h-24 w-24 rounded-full hover:border-blue-200 hover:bg-gray-100" 
+              src="/repocats.png"
+              alt=""
+            />
+          </a>
+        )}
     </div>
-    <div className="">
-      <img 
-        className="border-2 bg-white shadow inline-block h-24 w-24 rounded-full" 
-        src="/repocats.png"
-        alt=""
-      />
-    </div>
-  </div>
-)
+  )
+}
 
 function RepoList ({ repos }: Props) {
   const [open, setOpen] = useState(false)
   const [activeRepo, setActiveRepo] = useState<Repo>()
 
   return (
-    <>
-      <RepoListHeader />
+    <div className="mt-8 p-2">
+      <RepoListHeader/>
       <ul className="space-y-3 mt-4">
         {repos.map((repo) => (
           <li
@@ -61,7 +84,7 @@ function RepoList ({ repos }: Props) {
         setOpen={setOpen}
         repo={activeRepo}
       />
-    </>
+    </div>
   ) 
 }
 
