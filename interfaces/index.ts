@@ -5,16 +5,16 @@
 // import { User } from 'path/to/interfaces';
 
 export type Repo = {
-  unread?: boolean,
-  owner: string,
-  repoName: string,
-  url: string,
-  body: string,
-  tagName: string,
-  releaseDate: string,
+  unread?: boolean
+  owner: string
+  repoName: string
+  url: string
+  body: string
+  tagName: string
+  releaseDate: string
 }
 
 export type GitHubURL = {
-  owner: string,
-  repo: string,
+  owner: string
+  repo: string
 }

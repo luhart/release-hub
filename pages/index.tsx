@@ -9,7 +9,7 @@ export default function IndexPage(): JSX.Element {
   return (
     <Layout>
       <AddRepoPanel />
-      <RepoList repos={state}/>
+      <RepoList repos={state} />
     </Layout>
   )
 }

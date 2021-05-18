@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from 'next/link'
 
 export default function Navbar(): JSX.Element {
   return (
@@ -8,16 +8,11 @@ export default function Navbar(): JSX.Element {
           <div className="px-4 py-2">
             <Link href="/">
               <a>
-                <img
-                  className="w-14 h-14 inline align-top mr-4 mt-1"
-                  src="/octocat.png"
-                />
+                <img className="w-14 h-14 inline align-top mr-4 mt-1" src="/octocat.png" />
                 <div className="inline-block">
-                  <div className="text-black font-extrabold text-2xl">
-                    ReleaseHub
-                  </div>
+                  <div className="text-black font-extrabold text-2xl">ReleaseHub</div>
                   <div className="font-regular text-gray-600 text-xs border-l-4 pl-2 border-gray-100">
-                    Stay current with your <br/> favorite GitHub repos
+                    Stay current with your <br /> favorite GitHub repos
                   </div>
                 </div>
               </a>
