@@ -31,7 +31,7 @@ export default function AddRepoPanel(): JSX.Element {
   }
 
   return (
-    <div className="bg-white mt-4 shadow-lg rounded-md px-4 sm:pb-4 ">
+    <div className="bg-white mt-4 shadow rounded-md px-4 sm:pb-4 ">
       <div className="py-4">
         <div className="flex flex-row justify-between">
           <div>
