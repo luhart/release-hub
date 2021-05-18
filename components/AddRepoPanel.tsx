@@ -34,7 +34,7 @@ export default function AddRepoPanel () {
             <h3 className="text-xl leading-6 font-bold text-gray-900">Add a repository</h3>
             <div className="mt-2 text-sm text-gray-500">
               <p>Submit a GitHub repository URL to track.</p>
-              <p className="pt-0.5">Or add by owner/repo: <span className="text-gray-600 font-bold">airbnb/visx</span></p>
+              <p className="pt-0.5">Or add by owner/repo: <span className="text-gray-600 font-bold">vercel/swr</span></p>
             </div>
           </div>
           <div className="">
@@ -54,7 +54,7 @@ export default function AddRepoPanel () {
               type="text"
               id="newRepoURL"
               className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-              placeholder="ex. https://github.com/airbnb/visx"
+              placeholder="ex. https://github.com/vercel/swr"
               {...register("newRepoURL", { required: true })}
             />               
             ) : (
