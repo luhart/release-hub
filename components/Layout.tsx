@@ -7,7 +7,7 @@ type Props = {
   title?: string
 }
 
-const Layout = ({ children, title = 'ReleaseHub - A GitHub Release Tracker' }: Props) => (
+const Layout = ({ children, title = 'ReleaseHub - A GitHub Release Tracker' }: Props): JSX.Element => (
   <div>
     <Head>
       <title>{title}</title>

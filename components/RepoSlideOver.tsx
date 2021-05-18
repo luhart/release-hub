@@ -16,9 +16,9 @@ type Props = {
 
 
 
-function RepoContent(repo: Repo, setOpen: Dispatch<SetStateAction<boolean>> ) {
+function RepoContent(repo: Repo, setOpen: Dispatch<SetStateAction<boolean>> ): JSX.Element {
   const { dispatch } = useRepos()
-  const StopTracking = (repo: Repo) => {
+  const StopTracking = (repo: Repo): void => {
     setOpen(false)
     dispatch({type: "delete", repo: repo})
   }
@@ -52,7 +52,7 @@ function RepoContent(repo: Repo, setOpen: Dispatch<SetStateAction<boolean>> ) {
 }
 
 
-function RepoSlideOver ({open, setOpen, repo}: Props) {
+function RepoSlideOver ({open, setOpen, repo}: Props): JSX.Element {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" static className="fixed inset-0 overflow-hidden z-20" open={open} onClose={setOpen}>

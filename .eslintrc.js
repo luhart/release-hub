@@ -1,3 +1,4 @@
+// thanks to https://paulintrognon.fr/blog/typescript-prettier-eslint-next-js
 module.exports = {
   root: true,
   env: {

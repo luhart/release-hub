@@ -12,7 +12,7 @@ const RepoContext = createContext<
   {state: RepoState; dispatch: Dispatch} | undefined
 >(undefined)
 
-function repoReducer(state: RepoState, action: Action) {
+function repoReducer(state: RepoState, action: Action): RepoState {
   switch (action.type) {
     case "add_or_update": {
       const matchedRepo = state.find(repo => (repo.owner === action.repo.owner && repo.repoName === action.repo.repoName))
@@ -22,7 +22,7 @@ function repoReducer(state: RepoState, action: Action) {
           return [ ...state ]
         } else {
           action.repo.unread = true
-          let newState = state
+          const newState = state
           newState[matchedRepoIndex] = action.repo
           return [...newState ]
         }
@@ -46,7 +46,7 @@ function repoReducer(state: RepoState, action: Action) {
   }
 }
 
-export default function RepoContextProvider ({children}: RepoProviderProps) {
+export default function RepoContextProvider ({children}: RepoProviderProps): JSX.Element {
   const [ state, dispatch ] = useReducer(repoReducer, [], () => {
     const localRepoData = localStorage.getItem("repos")
     return localRepoData ? JSON.parse(localRepoData) : []
@@ -64,7 +64,8 @@ export default function RepoContextProvider ({children}: RepoProviderProps) {
   )
 }
 
-function useRepos() {
+function useRepos(): 
+{ state: RepoState; dispatch: Dispatch; } {
   const context = useContext(RepoContext)
   if (context === undefined) {
     throw new Error('useCount must be used within a RepoContextProvider')

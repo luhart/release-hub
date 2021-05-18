@@ -7,11 +7,11 @@ type Props = {
   repos: Repo[]
 }
 
-const RepoListHeader = () => {
+const RepoListHeader = (): JSX.Element => {
   const { state, dispatch } = useRepos()
   const [refreshing, setRefreshing] = useState(false)
 
-  const handleOnClick = async() => {
+  const handleOnClick = async(): Promise<void> => {
     setRefreshing(true)
     for (const oldRepo of state) {
       const resp = await fetch("/api/repo/add", {
@@ -61,7 +61,7 @@ const RepoListHeader = () => {
   )
 }
 
-function RepoList ({ repos }: Props) {
+function RepoList ({ repos }: Props): JSX.Element {
   const [open, setOpen] = useState(false)
   const [activeRepo, setActiveRepo] = useState<Repo>()
   const { dispatch } = useRepos()

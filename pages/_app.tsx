@@ -10,7 +10,7 @@ const RepoContextProviderNoSSR = dynamic(
   { ssr: false }
 )
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <RepoContextProviderNoSSR>
       <Component {...pageProps} />

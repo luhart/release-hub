@@ -56,13 +56,13 @@ export default function AddRepoPanel () {
               className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
               placeholder="ex. https://github.com/vercel/swr"
               {...register("newRepoURL", { required: true })}
-            />               
+            />
             ) : (
             <input
               type="text"
               id="newRepoURL"
               className="shadow-sm border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 block w-full sm:text-sm rounded-md"
-              placeholder="ex. https://github.com/airbnb/visx"
+              placeholder="ex. https://github.com/vercel/swr"
               {...register("newRepoURL", { required: true })}
             />
             )}

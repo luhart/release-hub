@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 import AddRepoPanel from '../components/AddRepoPanel'
 import RepoList from '../components/RepoList'
 
-export default function IndexPage () {
+export default function IndexPage(): JSX.Element {
   const { state } = useRepos()
 
   return (

@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-export default function Navbar() {
+export default function Navbar(): JSX.Element {
   return (
     <>
       <nav className="w-full font-mono text-left border-b-4 bg-gradient-to-l from-green-100 bg-blue-200 border-black shadow">
@@ -25,7 +25,7 @@ export default function Navbar() {
           </div>
           <a
             href="https://github.com/luhart/release-hub"
-            className="my-auto mx-4 py-2 px-2 border-2 border-indigo-400 text-md font-bold rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="my-auto mx-4 py-2 px-2 border-2 border-blue-400 text-md font-bold rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Source
           </a>
