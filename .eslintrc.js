@@ -24,10 +24,13 @@ module.exports = {
         'plugin:@typescript-eslint/recommended', // TypeScript rules
         'plugin:react/recommended', // React rules
         'plugin:react-hooks/recommended', // React hooks rules
+        'plugin:prettier/recommended',
       ],
       rules: {
         // We will use TypeScript's types for component props instead
         'react/prop-types': 'off',
+
+        'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Includes .prettierrc.js rules
 
         // No need to import React when using Next.js
         'react/react-in-jsx-scope': 'off',
@@ -46,4 +49,5 @@ module.exports = {
       },
     },
   ],
+  
 }
