@@ -4,7 +4,7 @@ import { createContext, useReducer, useEffect, useContext } from 'react'
 import { Repo } from '../interfaces'
 
 type Action = { type: string, repo: Repo }
-type Dispatch = ( action: Action ) => void // | Repo[]    ???
+type Dispatch = ( action: Action ) => void
 type RepoState = Repo[]
 type RepoProviderProps = {children: React.ReactNode}
 
@@ -14,16 +14,31 @@ const RepoContext = createContext<
 
 function repoReducer(state: RepoState, action: Action) {
   switch (action.type) {
-    case "add": {
-      return [ ...state, action.repo ]
-    }
     case "add_or_update": {
-      const newState = state.map(repo => (repo.owner + repo.repoName === action.repo.owner + action.repo.repoName && action.repo) || repo)
-      return [ ...newState ]
+      const matchedRepo = state.find(repo => (repo.owner === action.repo.owner && repo.repoName === action.repo.repoName))
+      if (matchedRepo) {
+        const matchedRepoIndex = state.findIndex(repo => (repo.owner === action.repo.owner && repo.repoName === action.repo.repoName))
+        if (matchedRepo.tagName === state[matchedRepoIndex].tagName) {
+          return [ ...state ]
+        } else {
+          action.repo.unread = true
+          let newState = state
+          newState[matchedRepoIndex] = action.repo
+          return [...newState ]
+        }
+      } else {
+        action.repo.unread = true
+        return [action.repo, ...state]
+      }
     }
     case "delete": {
       // TODO: filter for and remove action.repo from localStorage
       return state.filter(repo => repo.owner + repo.repoName !== action.repo.owner + action.repo.repoName)
+    }
+    case "mark_read": {
+      action.repo.unread = false
+      const newState = state.map(repo => (repo.owner + repo.repoName === action.repo.owner + action.repo.repoName && action.repo) || repo)
+      return [ ...newState ]
     }
     default: {
       throw new Error(`Undefined action type: ${action.type}`)

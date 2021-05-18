@@ -12,7 +12,7 @@ export default function AddRepoPanel () {
   const onSubmit = async (data: FormValues) => {
     const parsedData = data.newRepoURL.split("/").filter(item => item)
     const [ owner, repo ] = parsedData.splice(-2)
-    const resp = await fetch("/api/repos/add", {
+    const resp = await fetch("/api/repo/add", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export default function AddRepoPanel () {
       })
     })
     const repoData = await resp.json()
-    dispatch({type: 'add', repo: repoData})
+    dispatch({type: 'add_or_update', repo: repoData})
   }
 
   return (
