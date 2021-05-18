@@ -16,7 +16,7 @@ type Props = {
 
 
 
-function Body (repo: Repo, setOpen: Dispatch<SetStateAction<boolean>> ) {
+function RepoContent(repo: Repo, setOpen: Dispatch<SetStateAction<boolean>> ) {
   const { dispatch } = useRepos()
   const StopTracking = (repo: Repo) => {
     setOpen(false)
@@ -92,7 +92,7 @@ function RepoSlideOver ({open, setOpen, repo}: Props) {
                     </div>
                   </div>
                   <div className="mt-6 relative flex-1 px-4 sm:px-6">
-                    { repo && Body(repo, setOpen) }
+                    { repo && RepoContent(repo, setOpen) }
                   </div>
                 </div>
               </div>
