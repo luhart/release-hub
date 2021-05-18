@@ -5,6 +5,7 @@ import moment from 'moment'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import { Repo } from '../interfaces'
+import { useRepos } from '../utils/repo-context'
 
 type Props = {
   open: boolean,
@@ -12,25 +13,43 @@ type Props = {
   repo?: Repo,
 }
 
-const Body = (repo: Repo) => (
+
+
+
+function Body (repo: Repo, setOpen: Dispatch<SetStateAction<boolean>> ) {
+  const { dispatch } = useRepos()
+  const StopTracking = (repo: Repo) => {
+    setOpen(false)
+    dispatch({type: "delete", repo: repo})
+  }
+  return (
   <div className="absolute inset-0 px-4 sm:px-6 divide-dashed divide-y-4">
     <div className="flex flex-row justify-between my-4">
-      <div className="text-md">
-        <span className="mr-4 text-sm font-bold text-gray-500">release</span>
-        <span>{repo.tagName}</span>
+      <div className="text-md text-gray-800 font-bold">
+        <div className="mr-4 text-sm font-semibold text-gray-500">current release</div>
+        <div className="pb-4">{repo.tagName}</div>
+      </div>
+      <div className="text-md text-gray-800 font-bold">
+        <div className="mr-4 text-sm font-semibold text-gray-500">release date</div>
+        <div>
+          { moment(repo.releaseDate).format('YYYY-MM-DD') }
+        </div>
       </div>
       <div>
-        <span className="mr-4 text-sm font-bold text-gray-500">release date</span>
-        <span>
-          { moment(repo.releaseDate).format('YYYY-MM-DD') }
-        </span>
+        <button
+          onClick={() => StopTracking(repo)}
+          type="button"
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"        >
+          Stop Tracking
+        </button>
       </div>
     </div>
     <div className="py-8">
       <ReactMarkdown className="prose" remarkPlugins={[gfm]} >{repo.body}</ReactMarkdown>
     </div>
   </div>
-)
+  )
+}
 
 
 function RepoSlideOver ({open, setOpen, repo}: Props) {
@@ -63,7 +82,7 @@ function RepoSlideOver ({open, setOpen, repo}: Props) {
                       </Dialog.Title>
                       <div className="ml-3 h-7 flex items-center">
                         <button
-                          className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                          className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
                           onClick={() => setOpen(false)}
                         >
                           <span className="sr-only">Close panel</span>
@@ -73,7 +92,7 @@ function RepoSlideOver ({open, setOpen, repo}: Props) {
                     </div>
                   </div>
                   <div className="mt-6 relative flex-1 px-4 sm:px-6">
-                    { repo && Body(repo) }
+                    { repo && Body(repo, setOpen) }
                   </div>
                 </div>
               </div>
