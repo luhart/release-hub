@@ -5,6 +5,7 @@
 // import { User } from 'path/to/interfaces';
 
 export type Repo = {
+  unread?: boolean,
   owner: string,
   repoName: string,
   url: string,
