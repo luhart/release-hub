@@ -1,18 +1,35 @@
 import { useState } from 'react'
+import { useRepos } from "../utils/repo-context"
 import { Repo } from '../interfaces'
 import RepoSlideOver from './RepoSlideOver'
-
 
 type Props = {
   repos: Repo[]
 }
 
 const RepoListHeader = () => {
-
+  const { state, dispatch } = useRepos()
   const [refreshing, setRefreshing] = useState(false)
-  const handleOnClick = () => {
+
+  const handleOnClick = async() => {
     setRefreshing(true)
+    for (const oldRepo of state) {
+      const resp = await fetch("/api/repo/add", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          owner: oldRepo.owner,
+          repo: oldRepo.repoName,
+        })
+      })
+      const repoData = await resp.json()
+      dispatch({type: 'add_or_update', repo: repoData})
+    }
+    setRefreshing(false)
   }
+
   return (
     <div className="flex justify-between items-center ">
       <div>
@@ -25,11 +42,6 @@ const RepoListHeader = () => {
         </p>
         
       </div>
-        {/* TODO: 
-              - click the octocats to check for new releases 
-              - onHover show overlay a refresh icon
-              - onClick do a tailwind animation
-        */}
         {refreshing ? (
           <img 
             className="border-2 bg-white shadow inline-block h-24 w-24 rounded-full animate-pulse" 
@@ -52,6 +64,7 @@ const RepoListHeader = () => {
 function RepoList ({ repos }: Props) {
   const [open, setOpen] = useState(false)
   const [activeRepo, setActiveRepo] = useState<Repo>()
+  const { dispatch } = useRepos()
 
   return (
     <div className="mt-8 p-2">
@@ -60,10 +73,11 @@ function RepoList ({ repos }: Props) {
         {repos.map((repo) => (
           <li
             key={repo.tagName}
-            className="bg-white shadow overflow-hidden rounded-md px-6 py-4 cursor-pointer border-transparent border-4"
+            className={`bg-white shadow overflow-hidden rounded-md px-6 py-4 cursor-pointer border-4 ${repo.unread ? "border-green-300" : "border-transparent"}`}
             onClick={() => {
               setActiveRepo(repo)
               setOpen(true)
+              dispatch({type: "mark_read", repo: repo})
             }}
           >
             <div className="flex flex-row justify-between">
