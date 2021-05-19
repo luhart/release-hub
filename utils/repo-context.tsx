@@ -17,12 +17,12 @@ function repoReducer(state: RepoState, action: Action): RepoState {
         (repo) => repo.owner === action.repo.owner && repo.repoName === action.repo.repoName
       )
       if (matchedRepo) {
-        const matchedRepoIndex = state.findIndex(
-          (repo) => repo.owner === action.repo.owner && repo.repoName === action.repo.repoName
-        )
-        if (matchedRepo.tagName === state[matchedRepoIndex].tagName) {
+        if (matchedRepo.tagName === action.repo.tagName) {
           return [...state]
         } else {
+          const matchedRepoIndex = state.findIndex(
+            (repo) => repo.owner === action.repo.owner && repo.repoName === action.repo.repoName
+          )
           action.repo.unread = true
           const newState = state
           newState[matchedRepoIndex] = action.repo
