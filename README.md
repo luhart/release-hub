@@ -1,7 +1,10 @@
 # release-hub
 
-This project is bootstrapped from [next-ts-tailwind-starter](https://github.com/luhart/next-ts-tailwind-starter)
+[it's live](https://release-hub.vercel.app/) 😄
 
+This project is bootstrapped from [luhart/next-ts-tailwind-starter](https://github.com/luhart/next-ts-tailwind-starter)
+
+## Install & run
 
 ```bash
 npm i
